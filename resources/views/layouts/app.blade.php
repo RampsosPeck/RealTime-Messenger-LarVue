@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html class="h-100">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,8 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body class="h-100">
+    <div id="app" class="h-100">
         <!-- 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
              
@@ -81,7 +81,7 @@
             </b-collapse>
         </b-navbar>
 
-        <main class="py-4">
+        <main class="py-3" class="h-100">
             @yield('content')
         </main>
     </div>

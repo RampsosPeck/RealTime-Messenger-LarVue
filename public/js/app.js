@@ -1779,6 +1779,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -67147,39 +67183,141 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-row",
+    { staticClass: "h-100" },
     [
-      _c("b-col", { attrs: { cols: "8" } }),
+      _c(
+        "b-col",
+        { attrs: { cols: "8" } },
+        [
+          _c(
+            "b-card",
+            {
+              staticClass: "h-100",
+              attrs: {
+                "footer-bg-variant": "info",
+                "footer-border-variant": "dark",
+                title: "Conversación activa"
+              }
+            },
+            [
+              _c(
+                "b-media",
+                { attrs: { "left-align": "", "vertical-align": "center" } },
+                [
+                  _c("b-img", {
+                    attrs: {
+                      slot: "aside",
+                      blank: "",
+                      "blank-color": "#ccc",
+                      width: "48",
+                      rounded: "circle",
+                      alt: "placeholder"
+                    },
+                    slot: "aside"
+                  }),
+                  _vm._v(" "),
+                  _c("b-card", { staticClass: "mb-1" }, [
+                    _vm._v(
+                      "\n                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.\n                  Cras purus odio, vestibulum in vulputate at, tempus viverra  \n                "
+                    )
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-media",
+                { attrs: { "right-align": "", "vertical-align": "center" } },
+                [
+                  _c("b-img", {
+                    attrs: {
+                      slot: "aside",
+                      blank: "",
+                      "blank-color": "#ccc",
+                      width: "48",
+                      rounded: "circle",
+                      alt: "placeholder"
+                    },
+                    slot: "aside"
+                  }),
+                  _vm._v(" "),
+                  _c("b-card", { staticClass: "mb-1" }, [
+                    _vm._v(
+                      "\n                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.\n                 \n                "
+                    )
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c(
+                    "b-form",
+                    { staticClass: "mb-0" },
+                    [
+                      _c(
+                        "b-input-group",
+                        [
+                          _c("b-form-input", {
+                            staticClass: "text-center",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Escribe un mensaje..."
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "b-input-group-append",
+                            [
+                              _c(
+                                "b-button",
+                                { attrs: { variant: "primary" } },
+                                [_vm._v("Enviar")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "b-col",
         { attrs: { cols: "4" } },
         [
-          _c(
-            "b-img",
-            _vm._b(
-              {
-                staticClass: "m-1",
-                attrs: {
-                  rounded: "circle",
-                  blank: "",
-                  width: "60",
-                  height: "60",
-                  "blank-color": "#777",
-                  alt: "img"
-                }
-              },
-              "b-img",
-              _vm.mainProps,
-              false
-            )
-          ),
+          _c("b-img", {
+            staticClass: "mb-0",
+            attrs: {
+              rounded: "circle",
+              blank: "",
+              width: "60",
+              height: "60",
+              "blank-color": "#777",
+              alt: "img"
+            }
+          }),
           _vm._v(" "),
           _c("p", [_vm._v("Usuario Seleccionado")]),
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
           _c("b-form-checkbox", [
-            _vm._v("\n            Desactivar Notificaciones\n        ")
+            _vm._v(" \n            Desactivar Notificaciones\n        ")
           ])
         ],
         1
@@ -67222,25 +67360,17 @@ var render = function() {
             "b-col",
             { staticClass: "text-center", attrs: { cols: "12", md: "3" } },
             [
-              _c(
-                "b-img",
-                _vm._b(
-                  {
-                    staticClass: "m-1",
-                    attrs: {
-                      rounded: "circle",
-                      blank: "",
-                      width: "60",
-                      height: "60",
-                      "blank-color": "#777",
-                      alt: "img"
-                    }
-                  },
-                  "b-img",
-                  _vm.mainProps,
-                  false
-                )
-              )
+              _c("b-img", {
+                staticClass: "m-1",
+                attrs: {
+                  rounded: "circle",
+                  blank: "",
+                  width: "60",
+                  height: "60",
+                  "blank-color": "#777",
+                  alt: "img"
+                }
+              })
             ],
             1
           ),
@@ -67337,25 +67467,17 @@ var render = function() {
                       attrs: { cols: "12", md: "3" }
                     },
                     [
-                      _c(
-                        "b-img",
-                        _vm._b(
-                          {
-                            staticClass: "m-1",
-                            attrs: {
-                              rounded: "circle",
-                              blank: "",
-                              width: "60",
-                              height: "60",
-                              "blank-color": "#777",
-                              alt: "img"
-                            }
-                          },
-                          "b-img",
-                          _vm.mainProps,
-                          false
-                        )
-                      )
+                      _c("b-img", {
+                        staticClass: "m-1",
+                        attrs: {
+                          rounded: "circle",
+                          blank: "",
+                          width: "60",
+                          height: "60",
+                          "blank-color": "#777",
+                          alt: "img"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -67411,25 +67533,17 @@ var render = function() {
                       attrs: { cols: "12", md: "3" }
                     },
                     [
-                      _c(
-                        "b-img",
-                        _vm._b(
-                          {
-                            staticClass: "m-1",
-                            attrs: {
-                              rounded: "circle",
-                              blank: "",
-                              width: "60",
-                              height: "60",
-                              "blank-color": "#777",
-                              alt: "img"
-                            }
-                          },
-                          "b-img",
-                          _vm.mainProps,
-                          false
-                        )
-                      )
+                      _c("b-img", {
+                        staticClass: "m-1",
+                        attrs: {
+                          rounded: "circle",
+                          blank: "",
+                          width: "60",
+                          height: "60",
+                          "blank-color": "#777",
+                          alt: "img"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -67485,25 +67599,17 @@ var render = function() {
                       attrs: { cols: "12", md: "3" }
                     },
                     [
-                      _c(
-                        "b-img",
-                        _vm._b(
-                          {
-                            staticClass: "m-1",
-                            attrs: {
-                              rounded: "circle",
-                              blank: "",
-                              width: "60",
-                              height: "60",
-                              "blank-color": "#777",
-                              alt: "img"
-                            }
-                          },
-                          "b-img",
-                          _vm.mainProps,
-                          false
-                        )
-                      )
+                      _c("b-img", {
+                        staticClass: "m-1",
+                        attrs: {
+                          rounded: "circle",
+                          blank: "",
+                          width: "60",
+                          height: "60",
+                          "blank-color": "#777",
+                          alt: "img"
+                        }
+                      })
                     ],
                     1
                   ),

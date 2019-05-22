@@ -7,22 +7,12 @@
                 title="Conversación activa"  
                 class="h-100"
               >
-                <b-media left-align vertical-align="center">
-                    <b-img slot="aside" blank blank-color="#ccc" width="48" rounded="circle" alt="placeholder"></b-img>
- 
-                    <b-card   class="mb-1">
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                      Cras purus odio, vestibulum in vulputate at, tempus viverra  
-                    </b-card>
-                </b-media>
-                <b-media right-align vertical-align="center">
-                    <b-img slot="aside" blank blank-color="#ccc" width="48" rounded="circle" alt="placeholder"></b-img>
- 
-                    <b-card   class="mb-1">
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                     
-                    </b-card>
-                </b-media>
+                
+                <message-conversation-component   v-for="message in messages"
+                    :key="message.id">
+                    {{ message.content }}
+                </message-conversation-component> 
+
                 <div slot="footer">
                     <b-form class="mb-0">
 
@@ -54,10 +44,14 @@
     export default { 
         data(){
             return { 
+                messages :[],
             };
         },
         mounted() {
-            console.log('Component mounted.')
+            axios.get('/api/messages').then((res) => {
+                console.log(res.data);
+                this.messages = res.data;
+            });
         }
     }
 </script>

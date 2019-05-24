@@ -9,8 +9,15 @@
             </b-form>
 
         <ul class="list-group"> 
-                    
-            <contact-component >
+           
+            <contact-component v-for="conversation in conversations"
+                    :key="conversation.id"
+                    :conversacion = "conversation"
+                    >
+
+            </contact-component>
+
+           <!-- <contact-component >
             </contact-component>
             
             <li class="list-group-item list-group-item-secondary">
@@ -55,6 +62,7 @@
                     </b-col>                
                 </b-row>
             </li>
+        -->
         </ul>
     </div>  
 </template>
@@ -63,10 +71,19 @@
     export default { 
         data(){
             return { 
+                conversations: []
             };
         },
         mounted() {
-            console.log('Component mounted.')
+            this.getConversations();
+        },
+        methods: {
+            getConversations(){
+                axios.get('/api/conversations').then((res) =>{
+                    //console.log(res.data);
+                    this.conversations = res.data;
+                });
+            }
         }
     }
 </script>

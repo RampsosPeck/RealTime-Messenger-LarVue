@@ -5,11 +5,11 @@
                 <b-img  rounded="circle" blank width="60" height="60" blank-color="#777" alt="img" class="m-1"></b-img>
             </b-col>
             <b-col cols="6" align-self="center" class="d-none d-md-block">
-                <p class="mb-0">{{ name }}</p>
-                <p class="text-muted small mb-1">{{ lastMessage }}</p>
+                <p class="mb-0">{{ conversacion.contact_name }}</p>
+                <p class="text-muted small mb-1">{{ conversacion.last_message }}</p>
             </b-col>
             <b-col cols="3" align-self="center" class="d-none d-md-block">
-                <p class="text-muted small mb-0">{{ lastTime }}</p>
+                <p class="text-muted small mb-0">{{ conversacion.last_time }}</p>
             </b-col>                
         </b-row>
     </li>
@@ -17,16 +17,16 @@
 
 <script>
     export default {
-         
+        props:{
+            conversacion: Object
+        },
         data(){
             return {
-                name: 'Juan Ramos Canco',
-                lastMessage: 'Tú: Hasta luego',
-                lastTime: '1:37 pm'
+                 
             };
         },
         mounted() {
-            console.log('Component mounted.')
+         
         }
     }
 </script>

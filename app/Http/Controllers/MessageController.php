@@ -12,7 +12,7 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         /*return Message::select('id',
                 'from_id',
@@ -21,13 +21,18 @@ class MessageController extends Controller
                 ->get();*/  
 
         $userId = auth()->id();
+        $contactId = $request->contact_id;
         return Message::select(
                 'id',
                 //DB::raw("IF(`from_id`=$userId, TRUE, FALSE) as wirterMe"),
-               DB::raw("(CASE WHEN (from_id = $userId) THEN TRUE ELSE FALSE END) as written_By_Me"),
-               //DB::raw("$userId as wirterMe "),
+               DB::raw("(CASE WHEN (from_id = $userId) THEN TRUE ELSE FALSE END) as written_By_Me"), 
                 'created_at',
-                'content')->get();
+                'content')
+            ->where(function($query) use($userId,$contactId){
+                $query->where('from_id', $userId)->where('to_id',$contactId);
+            })->orWhere(function($query) use($userId,$contactId){
+                $query->where('from_id', $contactId)->where('to_id',$userId);
+            })->get();
 
 
     }

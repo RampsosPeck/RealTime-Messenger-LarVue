@@ -1812,7 +1812,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       messages: [],
-      newMessage: ''
+      newMessage: '',
+      contacId: 3
     };
   },
   mounted: function mounted() {
@@ -1822,7 +1823,7 @@ __webpack_require__.r(__webpack_exports__);
     getMessages: function getMessages() {
       var _this = this;
 
-      axios.get('/api/messages').then(function (res) {
+      axios.get("/api/messages?contact_id=".concat(this.contacId)).then(function (res) {
         //console.log(res.data);
         _this.messages = res.data;
       });
@@ -1831,7 +1832,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var params = {
-        to_id: 2,
+        to_id: this.contacId,
         content: this.newMessage
       };
       axios.post('/api/messages', params).then(function (res) {
@@ -1874,16 +1875,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      name: 'Juan Ramos Canco',
-      lastMessage: 'Tú: Hasta luego',
-      lastTime: '1:37 pm'
-    };
+  props: {
+    conversacion: Object
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  data: function data() {
+    return {};
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -1958,12 +1956,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      conversations: []
+    };
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.getConversations();
+  },
+  methods: {
+    getConversations: function getConversations() {
+      var _this = this;
+
+      axios.get('/api/conversations').then(function (res) {
+        //console.log(res.data);
+        _this.conversations = res.data;
+      });
+    }
   }
 });
 
@@ -67424,10 +67442,12 @@ var render = function() {
               attrs: { cols: "6", "align-self": "center" }
             },
             [
-              _c("p", { staticClass: "mb-0" }, [_vm._v(_vm._s(_vm.name))]),
+              _c("p", { staticClass: "mb-0" }, [
+                _vm._v(_vm._s(_vm.conversacion.contact_name))
+              ]),
               _vm._v(" "),
               _c("p", { staticClass: "text-muted small mb-1" }, [
-                _vm._v(_vm._s(_vm.lastMessage))
+                _vm._v(_vm._s(_vm.conversacion.last_message))
               ])
             ]
           ),
@@ -67440,7 +67460,7 @@ var render = function() {
             },
             [
               _c("p", { staticClass: "text-muted small mb-0" }, [
-                _vm._v(_vm._s(_vm.lastTime))
+                _vm._v(_vm._s(_vm.conversacion.last_time))
               ])
             ]
           )
@@ -67491,207 +67511,12 @@ var render = function() {
       _c(
         "ul",
         { staticClass: "list-group" },
-        [
-          _c("contact-component"),
-          _vm._v(" "),
-          _c(
-            "li",
-            { staticClass: "list-group-item list-group-item-secondary" },
-            [
-              _c(
-                "b-row",
-                { staticClass: "p-2", attrs: { "align-h": "center" } },
-                [
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { cols: "12", md: "3" }
-                    },
-                    [
-                      _c("b-img", {
-                        staticClass: "m-1",
-                        attrs: {
-                          rounded: "circle",
-                          blank: "",
-                          width: "60",
-                          height: "60",
-                          "blank-color": "#777",
-                          alt: "img"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "d-none d-md-block",
-                      attrs: { cols: "6", "align-self": "center" }
-                    },
-                    [
-                      _c("p", { staticClass: "mb-0" }, [
-                        _vm._v("Dr. Rodrigo Mora")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "text-muted small mb-1" }, [
-                        _vm._v("Tú: Ultimo día")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "d-none d-md-block",
-                      attrs: { cols: "3", "align-self": "center" }
-                    },
-                    [
-                      _c("p", { staticClass: "text-muted small mb-0" }, [
-                        _vm._v("15: 15 am")
-                      ])
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            { staticClass: "list-group-item list-group-item-secondary" },
-            [
-              _c(
-                "b-row",
-                { staticClass: "p-2", attrs: { "align-h": "center" } },
-                [
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { cols: "12", md: "3" }
-                    },
-                    [
-                      _c("b-img", {
-                        staticClass: "m-1",
-                        attrs: {
-                          rounded: "circle",
-                          blank: "",
-                          width: "60",
-                          height: "60",
-                          "blank-color": "#777",
-                          alt: "img"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "d-none d-md-block",
-                      attrs: { cols: "6", "align-self": "center" }
-                    },
-                    [
-                      _c("p", { staticClass: "mb-0" }, [
-                        _vm._v("Habrahan Mora")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "text-muted small mb-1" }, [
-                        _vm._v("Tú: Ultimo día")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "d-none d-md-block",
-                      attrs: { cols: "3", "align-self": "center" }
-                    },
-                    [
-                      _c("p", { staticClass: "text-muted small mb-0" }, [
-                        _vm._v("15: 15 am")
-                      ])
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            { staticClass: "list-group-item list-group-item-info" },
-            [
-              _c(
-                "b-row",
-                { staticClass: "p-2", attrs: { "align-h": "center" } },
-                [
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { cols: "12", md: "3" }
-                    },
-                    [
-                      _c("b-img", {
-                        staticClass: "m-1",
-                        attrs: {
-                          rounded: "circle",
-                          blank: "",
-                          width: "60",
-                          height: "60",
-                          "blank-color": "#777",
-                          alt: "img"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "d-none d-md-block",
-                      attrs: { cols: "6", "align-self": "center" }
-                    },
-                    [
-                      _c("p", { staticClass: "mb-0" }, [
-                        _vm._v("Lic. Sebastian Mendoza")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "text-muted small mb-1" }, [
-                        _vm._v("Tú: Adiós amigo")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "d-none d-md-block",
-                      attrs: { cols: "3", "align-self": "center" }
-                    },
-                    [
-                      _c("p", { staticClass: "text-muted small mb-0" }, [
-                        _vm._v("10:10 pm")
-                      ])
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
+        _vm._l(_vm.conversations, function(conversation) {
+          return _c("contact-component", {
+            key: conversation.id,
+            attrs: { conversacion: conversation }
+          })
+        }),
         1
       )
     ],

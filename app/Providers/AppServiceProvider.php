@@ -4,6 +4,9 @@ namespace Realmessenger\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Realmessenger\Message;
+use Realmessenger\Observers\MessageObserver;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Message::observe(MessageObserver::class);
     }
 }

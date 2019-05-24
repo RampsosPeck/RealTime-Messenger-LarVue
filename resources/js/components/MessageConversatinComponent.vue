@@ -1,5 +1,5 @@
 <template> 
-    <b-media :right-align="wirterMe" vertical-align="center">
+    <b-media :right-align="writtenByMe" vertical-align="center">
         <b-img slot="aside" blank blank-color="#ccc" width="48" rounded="circle" alt="placeholder"></b-img>
 
         <b-card   class="mb-1">
@@ -12,7 +12,7 @@
 <script>
     export default { 
         props: {
-            wirterMe :Boolean
+            writtenByMe : Boolean
         },
         data(){
             return { 

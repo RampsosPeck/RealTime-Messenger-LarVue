@@ -1805,19 +1805,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      messages: []
+      messages: [],
+      newMessage: ''
     };
   },
   mounted: function mounted() {
-    var _this = this;
+    this.getMessages();
+  },
+  methods: {
+    getMessages: function getMessages() {
+      var _this = this;
 
-    axios.get('/api/messages').then(function (res) {
-      console.log(res.data);
-      _this.messages = res.data;
-    });
+      axios.get('/api/messages').then(function (res) {
+        //console.log(res.data);
+        _this.messages = res.data;
+      });
+    },
+    postMessage: function postMessage() {
+      var _this2 = this;
+
+      var params = {
+        to_id: 2,
+        content: this.newMessage
+      };
+      axios.post('/api/messages', params).then(function (res) {
+        if (res.data.success) {
+          _this2.newMessage = '';
+
+          _this2.getMessages();
+        }
+      });
+    }
   }
 });
 
@@ -1967,7 +1991,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    wirterMe: Boolean
+    writtenByMe: Boolean
   },
   data: function data() {
     return {
@@ -67236,7 +67260,10 @@ var render = function() {
               _vm._l(_vm.messages, function(message) {
                 return _c(
                   "message-conversation-component",
-                  { key: message.id },
+                  {
+                    key: message.id,
+                    attrs: { writtenByMe: message.written_by_me }
+                  },
                   [
                     _vm._v(
                       "\n                " +
@@ -67253,7 +67280,16 @@ var render = function() {
                 [
                   _c(
                     "b-form",
-                    { staticClass: "mb-0" },
+                    {
+                      staticClass: "mb-0",
+                      attrs: { autocomplete: "off" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.postMessage($event)
+                        }
+                      }
+                    },
                     [
                       _c(
                         "b-input-group",
@@ -67263,6 +67299,13 @@ var render = function() {
                             attrs: {
                               type: "text",
                               placeholder: "Escribe un mensaje..."
+                            },
+                            model: {
+                              value: _vm.newMessage,
+                              callback: function($$v) {
+                                _vm.newMessage = $$v
+                              },
+                              expression: "newMessage"
                             }
                           }),
                           _vm._v(" "),
@@ -67271,7 +67314,9 @@ var render = function() {
                             [
                               _c(
                                 "b-button",
-                                { attrs: { variant: "primary" } },
+                                {
+                                  attrs: { type: "submit", variant: "primary" }
+                                },
                                 [_vm._v("Enviar")]
                               )
                             ],
@@ -67677,7 +67722,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-media",
-    { attrs: { "right-align": _vm.wirterMe, "vertical-align": "center" } },
+    { attrs: { "right-align": _vm.writtenByMe, "vertical-align": "center" } },
     [
       _c("b-img", {
         attrs: {

@@ -34,7 +34,7 @@
         </b-col>
         <b-col cols="4">
             <b-img  rounded="circle" blank width="60" height="60" blank-color="#777" alt="img" class="mb-0"></b-img>
-            <p>Usuario Seleccionado</p>
+            <p>{{ contactName }}</p>
             <hr>
             <b-form-checkbox> 
                 Desactivar Notificaciones
@@ -45,11 +45,14 @@
 
 <script>
     export default { 
+        props:{
+            contactId: Number,
+            contactName: String
+        },
         data(){
             return { 
                 messages :[],
-                newMessage: '',
-                contacId: 3
+                newMessage: '' 
             };
         },
         mounted() {
@@ -57,7 +60,7 @@
         },
         methods: {
             getMessages(){
-                axios.get(`/api/messages?contact_id=${this.contacId}`).then((res) => {
+                axios.get(`/api/messages?contact_id=${this.contactId}`).then((res) => {
                     //console.log(res.data);
                     this.messages = res.data;
                 });
@@ -65,7 +68,7 @@
             postMessage()
             {
                 const params = {
-                    to_id: this.contacId,
+                    to_id: this.contactId,
                     content: this.newMessage
                 };
                 axios.post('/api/messages',params).then((res) => {
@@ -75,6 +78,12 @@
                     }
                     
                 });
+            }
+        },
+        watch:{
+            contactId(value){
+                //console.log(`contactId => ${this.contactId}`);
+                this.getMessages();
             }
         }
 

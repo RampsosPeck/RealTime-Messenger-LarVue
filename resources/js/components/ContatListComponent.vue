@@ -13,6 +13,7 @@
             <contact-component v-for="conversation in conversations"
                     :key="conversation.id"
                     :conversacion = "conversation"
+                    @click.native="selectConversation(conversation)"
                     >
 
             </contact-component>
@@ -83,6 +84,10 @@
                     //console.log(res.data);
                     this.conversations = res.data;
                 });
+            },
+            selectConversation(conversation){
+                //console.log(conversation);
+                this.$emit('conversationSelected',conversation);
             }
         }
     }

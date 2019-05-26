@@ -8,12 +8,14 @@
                 class="h-100"
               >
                 
-                <message-conversation-component   
-                    v-for="message in messages"
-                    :key="message.id"
-                    :writtenByMe =  "message.written_by_me">
-                    {{ message.content }}
-                </message-conversation-component> 
+                <div id="messages-container">
+                    <message-conversation-component   
+                        v-for="message in messages"
+                        :key="message.id"
+                        :writtenByMe =  "message.written_by_me">
+                        {{ message.content }}
+                    </message-conversation-component> 
+                </div>
 
                 <div slot="footer">
                     <b-form class="mb-0" @submit.prevent="postMessage" autocomplete="off">
@@ -43,28 +45,28 @@
     </b-row>
 </template>
 
+<style>
+    #messages-container {
+        max-height: 400px;
+    }
+</style>
+
 <script>
     export default { 
         props:{
             contactId: Number,
-            contactName: String
+            contactName: String,
+            messages : Array
         },
         data(){
             return { 
-                messages :[],
                 newMessage: '' 
             };
         },
         mounted() {
-            this.getMessages();
+          
         },
-        methods: {
-            getMessages(){
-                axios.get(`/api/messages?contact_id=${this.contactId}`).then((res) => {
-                    //console.log(res.data);
-                    this.messages = res.data;
-                });
-            },
+        methods: {            
             postMessage()
             {
                 const params = {
@@ -73,19 +75,21 @@
                 };
                 axios.post('/api/messages',params).then((res) => {
                     if(res.data.success){
-                        this.newMessage = '';
-                        this.getMessages();    
+                        this.newMessage = '';  
                     }
                     
                 });
-            }
-        },
-        watch:{
-            contactId(value){
-                //console.log(`contactId => ${this.contactId}`);
-                this.getMessages();
             }
         }
 
     }
 </script>
+
+
+
+        //watch:{
+        //    contactId(value){
+                //console.log(`contactId => ${this.contactId}`);
+          //      this.getMessages();
+            //}
+        //}

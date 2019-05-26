@@ -4,6 +4,7 @@ namespace Realmessenger\Observers;
 
 use Realmessenger\Message;
 use Realmessenger\Conversation;
+use Realmessenger\Events\MessageSent;
 
 class MessageObserver
 {
@@ -31,6 +32,7 @@ class MessageObserver
             $conversation->save();
         }
 
+        event(new MessageSent($message));
     }
 
     /**

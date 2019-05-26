@@ -171,7 +171,7 @@ return [
          */
         Realmessenger\Providers\AppServiceProvider::class,
         Realmessenger\Providers\AuthServiceProvider::class,
-        // Realmessenger\Providers\BroadcastServiceProvider::class,
+        Realmessenger\Providers\BroadcastServiceProvider::class,
         Realmessenger\Providers\EventServiceProvider::class,
         Realmessenger\Providers\RouteServiceProvider::class,
 

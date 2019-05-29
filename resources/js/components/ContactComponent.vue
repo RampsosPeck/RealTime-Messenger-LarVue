@@ -6,7 +6,7 @@
             </b-col>
             <b-col cols="6" align-self="center" class="d-none d-md-block">
                 <p class="mb-0">
-                    <b-img  rounded="circle" blank width="10" height="10" blank-color="green" alt="img" ></b-img>
+                   <status-componet :online="conversacion.online"></status-componet>
 
                     {{ conversacion.contact_name }}
                 </p>

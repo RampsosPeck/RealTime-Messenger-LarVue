@@ -46,15 +46,16 @@
 
 		    Echo.join('messenger')
 		    .here((users) => {
-		        console.log('online', users);
-		        
+		        //console.log('online', users);
+		        users.forEach(user => this.changesStatus(user, true));
 		    })
-		    .joining((user) => {
-		        console.log(user.id);
-		    })
-		    .leaving((user) => {
-		        console.log(user.id);
-		    });
+		    .joining(
+		    	user => this.changesStatus(user, true)
+		    )
+		    .leaving(
+		    	user => this.changesStatus(user, false)
+ 
+		    );
         },
         methods: {
         	changeActiveConversation(conversation){ 
@@ -89,6 +90,13 @@
                     //console.log(res.data);
                     this.conversations = res.data;
                 });
+            },
+            changesStatus(user, status){
+            	const index = this.conversations.findIndex((conversation) => {
+		    		return conversation.contact_id == user.id;
+		    	});
+		    	if(index >= 0)
+		        	this.$set(this.conversations[index], 'online', status);
             }
         }
     }

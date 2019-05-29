@@ -1,8 +1,8 @@
 <template>
-    <li class="list-group-item list-group-item-primary">
+    <b-list-group-item :variant="variant">
         <b-row class="p-2" align-h="center">
             <b-col cols="12" md="3" class="text-center">
-                <b-img  rounded="circle" blank width="60" height="60" blank-color="#777" alt="img" class="m-1"></b-img>
+                <b-img :src="conversacion.contact_image" rounded="circle" width="60" height="60"  alt="img" class="m-1"></b-img>
             </b-col>
             <b-col cols="6" align-self="center" class="d-none d-md-block">
                 <p class="mb-0">
@@ -16,13 +16,14 @@
                 <p class="text-muted small mb-0">{{ lastTime }}</p>
             </b-col>                
         </b-row>
-    </li>
+    </b-list-group-item>
 </template>
 
 <script>
     export default {
         props:{
-            conversacion: Object
+            conversacion: Object,
+            selected: Boolean
         },
         data(){
             return {
@@ -35,6 +36,9 @@
         computed:{
             lastTime(){
                 return moment(this.conversacion.last_time, "YYYY-MM-DD hh:mm:ss").locale('es').fromNow();
+            },
+            variant(){
+                return this.selected ? 'primary' :'info';
             }
         }
     }

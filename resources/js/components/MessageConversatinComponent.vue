@@ -1,8 +1,8 @@
 <template> 
     <b-media :right-align="writtenByMe" vertical-align="center">
-        <b-img slot="aside" blank blank-color="#ccc" width="48" rounded="circle" alt="placeholder"></b-img>
+        <b-img slot="aside"  :src="image" width="40" height="40"  rounded="circle" alt="img"></b-img>
 
-        <b-card   class="mb-1">
+        <b-card   class="mb-1 bg-info">
           <slot></slot>
          
         </b-card>
@@ -12,15 +12,16 @@
 <script>
     export default { 
         props: {
+            image: String,
             writtenByMe : Boolean
         },
         data(){
             return { 
-                content : 'abc'
+             
             };
         },
         mounted() {
-            console.log('Component mounted.')
+           
         }
     }
 </script>

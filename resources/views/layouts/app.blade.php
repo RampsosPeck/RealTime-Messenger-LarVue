@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -27,7 +27,7 @@
         </nav> -->
 
         <b-navbar toggleable="lg" type="dark" variant="info">
-            <b-navbar-brand href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</b-navbar-brand>
+            <b-navbar-brand href="{{ url('/home') }}">{{ config('app.name', 'Laravel') }}</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -51,7 +51,9 @@
                                         @csrf
                                     </b-form>
                                 </b-dropdown-item>
-                            
+                                <b-dropdown-item href="{{ url('/profile') }}"  >
+                                                 {{ __('Modificar Perfil') }} 
+                                </b-dropdown-item>
                         </b-nav-item-dropdown>
                     @endguest
               </b-navbar-nav>

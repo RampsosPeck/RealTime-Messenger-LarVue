@@ -3,14 +3,24 @@
 	    <b-row no-gutters class="h-100"> 
 	        
 	        <b-col cols="4"  >    
-	            <contact-list-component @conversationSelected="changeActiveConversation($event)" :conversations="conversations">
+                <b-form class="my-3 mx-2">
+                    <b-form-input class="text-center"
+                        type="text" 
+                        v-model="querySearch"
+                        placeholder="Buscar contacto...">
+                            
+                    </b-form-input>
+                </b-form>
+	            <contact-list-component @conversationSelected="changeActiveConversation($event)" :conversations="conversationsFiltered">
 	            </contact-list-component>
 	        </b-col>
 	        <b-col cols="8">
 	            <active-conversation-component
 	            	v-if="selectedConversation" 
 	            	:contact-id="selectedConversation.contact_id"
-	            	:contact-name="selectedConversation.contact_name"
+                    :contact-name="selectedConversation.contact_name"
+                    :contact-image="selectedConversation.contact_image"
+	            	:my-image="myImageUrl"
 	            	:messages="messages"
 	            	@messageCreated="addMessage($event)">
 	            </active-conversation-component>
@@ -24,19 +34,20 @@
 <script>
     export default {  
     	props:{
-    		userId: Number
+    		user: Object
     	},
         data(){
             return { 
                 selectedConversation: null,
                 messages: [],
-                conversations: []
+                conversations: [],
+                querySearch: ''
             };
         },
         mounted() {       
             this.getConversations();     
 
-            Echo.private(`users.${this.userId}`)
+            Echo.private(`users.${this.user.id}`)
 		    .listen('MessageSent', (data) => {		    	
 		    	console.log(message);
 		    	const message = data.message;
@@ -75,7 +86,7 @@
             		conversation.contact_id == message.to_id;
             	});
 
-            	const author = this.userId=== message.from_id ? 'Tú' : conversation.contact_name;
+            	const author = this.user.id=== message.from_id ? 'Tú' : conversation.contact_name;
             	conversation.last_message = `${author}: ${message.content}`;
             	conversation.last_time = message.created_at;
 
@@ -97,6 +108,17 @@
 		    	});
 		    	if(index >= 0)
 		        	this.$set(this.conversations[index], 'online', status);
+            }
+        },
+        computed:{
+            myImageUrl(){
+                return `/img/${this.user.image}`;
+            },
+            conversationsFiltered(){
+                return this.conversations.filter((conversations) => 
+                    conversations.contact_name
+                    .toLowerCase()
+                    .includes(this.querySearch.toLowerCase()));
             }
         }
     }

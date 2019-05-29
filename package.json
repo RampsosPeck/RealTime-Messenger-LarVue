@@ -26,6 +26,7 @@
     "dependencies": {
         "bootstrap-vue": "^2.0.0-rc.20",
         "laravel-echo": "^1.5.3",
+        "moment": "^2.24.0",
         "pusher-js": "^4.4.0"
     }
 }

@@ -81,7 +81,7 @@
             </b-collapse>
         </b-navbar>
 
-        <main class="py-3" class="h-100">
+        <main class="py-0" class="h-100">
             @yield('content')
         </main>
     </div>

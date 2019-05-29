@@ -1,21 +1,22 @@
 <template>
     <b-row  class="h-100">
         <b-col cols="8">
-            <b-card 
+            <b-card no-body
                 footer-bg-variant="info"
                 footer-border-variant="dark"
                 title="Conversación activa"  
                 class="h-100"
               >
-                
-                <div id="messages-container">
+                <b-card-body class="card-body-scroll">
+
                     <message-conversation-component   
                         v-for="message in messages"
                         :key="message.id"
                         :writtenByMe =  "message.written_by_me">
                         {{ message.content }}
                     </message-conversation-component> 
-                </div>
+
+                </b-card-body> 
 
                 <div slot="footer">
                     <b-form class="mb-0" @submit.prevent="postMessage" autocomplete="off">
@@ -46,9 +47,10 @@
 </template>
 
 <style>
-    #messages-container {
-        max-height: 400px;
-    }
+    .card-body-scroll{
+        max-height: calc(100vh - 63px);
+        overflow-y: scroll;
+    } 
 </style>
 
 <script>
@@ -76,10 +78,20 @@
                 axios.post('/api/messages',params).then((res) => {
                     if(res.data.success){
                         this.newMessage = '';  
+                        const message = res.data.message;
+                        message.written_by_me = true;
+                        this.$emit('messageCreated', res.data.message);
                     }
                     
                 });
+            },
+            scrollToBottom(){
+                const el = document.querySelector('.card-body-scroll');
+                el.scrollTop = el.scrollHeight;
             }
+        },
+        updated(){
+            this.scrollToBottom();  
         }
 
     }

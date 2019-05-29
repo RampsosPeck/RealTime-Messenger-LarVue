@@ -1,5 +1,5 @@
 <?php
-
+use Realmessenger\User;
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -11,6 +11,21 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
+Broadcast::channel('Realmessenger.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('users.{id}', function ($user, $id) {
+    return $user->id === User::findOrNew($id)->user_id;
+});
+/*
+Broadcast::channel('users.{id}', function ($user, $id) {
+    return (int)$user->id === (int)$id;
+});*/
+
+Broadcast::channel('messenger', function ($user) {
+    return [
+    	'id' => $user->id
+    ];
+});
+

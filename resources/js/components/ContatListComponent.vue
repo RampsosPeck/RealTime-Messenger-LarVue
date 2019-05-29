@@ -17,74 +17,26 @@
                     >
 
             </contact-component>
-
-           <!-- <contact-component >
-            </contact-component>
-            
-            <li class="list-group-item list-group-item-secondary">
-                <b-row class="p-2" align-h="center">
-                    <b-col cols="12" md="3" class="text-center">
-                        <b-img   rounded="circle" blank width="60" height="60" blank-color="#777" alt="img" class="m-1"></b-img>
-                    </b-col>
-                    <b-col cols="6" align-self="center" class="d-none d-md-block">
-                        <p class="mb-0">Dr. Rodrigo Mora</p>
-                        <p class="text-muted small mb-1">Tú: Ultimo día</p>
-                    </b-col>
-                    <b-col cols="3" align-self="center" class="d-none d-md-block">
-                        <p class="text-muted small mb-0">15: 15 am</p>
-                    </b-col>                
-                </b-row>
-            </li>
-            <li class="list-group-item list-group-item-secondary">
-                <b-row class="p-2" align-h="center">
-                    <b-col cols="12" md="3" class="text-center">
-                        <b-img   rounded="circle" blank width="60" height="60" blank-color="#777" alt="img" class="m-1"></b-img>
-                    </b-col>
-                    <b-col cols="6" align-self="center" class="d-none d-md-block">
-                        <p class="mb-0">Habrahan Mora</p>
-                        <p class="text-muted small mb-1">Tú: Ultimo día</p>
-                    </b-col>
-                    <b-col cols="3" align-self="center" class="d-none d-md-block">
-                        <p class="text-muted small mb-0">15: 15 am</p>
-                    </b-col>                
-                </b-row>
-            </li>
-            <li class="list-group-item list-group-item-info">
-                <b-row class="p-2" align-h="center">
-                    <b-col cols="12" md="3" class="text-center">
-                        <b-img   rounded="circle" blank width="60" height="60" blank-color="#777" alt="img" class="m-1"></b-img>
-                    </b-col>
-                    <b-col cols="6" align-self="center" class="d-none d-md-block">
-                        <p class="mb-0">Lic. Sebastian Mendoza</p>
-                        <p class="text-muted small mb-1">Tú: Adiós amigo</p>
-                    </b-col>
-                    <b-col cols="3" align-self="center" class="d-none d-md-block">
-                        <p class="text-muted small mb-0">10:10 pm</p>
-                    </b-col>                
-                </b-row>
-            </li>
-        -->
+ 
         </ul>
     </div>  
 </template>
 
 <script>
     export default { 
+        props: {
+            conversations: Array
+        },
         data(){
             return { 
-                conversations: []
+               
             };
         },
         mounted() {
-            this.getConversations();
+           // this.getConversations();
         },
         methods: {
-            getConversations(){
-                axios.get('/api/conversations').then((res) =>{
-                    //console.log(res.data);
-                    this.conversations = res.data;
-                });
-            },
+          
             selectConversation(conversation){
                 //console.log(conversation);
                 this.$emit('conversationSelected',conversation);

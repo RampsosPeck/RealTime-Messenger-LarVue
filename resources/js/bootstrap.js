@@ -52,7 +52,7 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
      broadcaster: 'pusher',
-     key: '3aae42a8fb122ed6ca15',
+     key: '75899fe20598e033f0a7',
      cluster: 'us2',
      encrypted: true
 });
@@ -65,3 +65,5 @@ window.Echo = new Echo({
      encrypted: true
 });
  */
+
+window.moment = require('moment');

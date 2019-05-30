@@ -9,11 +9,17 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 
+
+//window.eventBus = new Vue();
+
 //https://bootstrap-vue.js.org/docs/
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
+import Vue from 'vue'
+import Vuex from 'vuex'
 
+Vue.use(Vuex)
 
 /**
  * The following block of code may be used to automatically register your
@@ -34,6 +40,22 @@ Vue.component('messenger-component', require('./components/MessengerComponent.vu
 Vue.component('status-componet', require('./components/StatusComponent.vue').default);
 Vue.component('profile-component', require('./components/ProfileComponent.vue').default);
 
+
+
+const store = new Vuex.Store({
+  state: {
+    messages:[]
+  },
+  mutations:{
+  	newMessagesList(state, messages){
+  		state.messages = messages;
+  	},
+  	addMessage(state,message){
+  		state.messages.push(message);
+  	}
+  } 
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -42,4 +64,5 @@ Vue.component('profile-component', require('./components/ProfileComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    store
 });

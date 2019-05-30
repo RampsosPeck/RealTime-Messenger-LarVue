@@ -58,8 +58,7 @@
     export default { 
         props:{
             contactId: Number,
-            contactName: String,
-            messages : Array,
+            contactName: String, 
             contactImage: String,
             myImage: String
         },
@@ -69,7 +68,9 @@
             };
         },
         mounted() {
-          
+          //eventBus.$on('example',function(data){
+          //      console.log('Ocurrió el evento example',data);
+          //});
         },
         methods: {            
             postMessage()
@@ -91,6 +92,11 @@
             scrollToBottom(){
                 const el = document.querySelector('.card-body-scroll');
                 el.scrollTop = el.scrollHeight;
+            }
+        },
+        computed:{
+            messages() {
+                return this.$store.state.messages;
             }
         },
         updated(){

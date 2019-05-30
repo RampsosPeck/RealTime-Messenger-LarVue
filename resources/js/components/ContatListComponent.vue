@@ -36,6 +36,8 @@
                 //console.log(conversation);
                 this.selectedConversationId =conversation.id;
                 this.$emit('conversationSelected',conversation);
+
+               // eventBus.$emit('example',conversation);
             }
         }
     }
